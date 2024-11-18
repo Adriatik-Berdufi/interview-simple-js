@@ -1,4 +1,4 @@
-Create a basic To-Do list where the user can:
+Create a node.js basic To-Do list where the user can:
 
 - Add tasks.
 - View the list of tasks.

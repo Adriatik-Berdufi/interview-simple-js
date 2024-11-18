@@ -1,4 +1,4 @@
-Create a JavaScript program that:
+Create a node.js program that:
 
 1. Generates a random number between 1 and 10.
 2. Asks the user to guess the number.

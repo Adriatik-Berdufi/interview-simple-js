@@ -1,4 +1,4 @@
-Create a JavaScript script that does the following:
+Create a node.js script that does the following:
 
 1. Asks the user to enter a number.
 2. Displays all even numbers between 0 and the entered number.
