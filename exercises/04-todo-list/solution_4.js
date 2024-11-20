@@ -15,7 +15,17 @@ function addTask() {
   const task = prompt("Inserisci la task: ");
   tasks.push(task);
 }
-
+//func view tasks
+function viewTasks() {
+  if (tasks.length == 0) {
+    console.log("Non ci sono ancora Task aggiunte.");
+  } else {
+    console.log("Task List");
+    tasks.forEach((task, index) => {
+      console.log(`${index + 1}: ${task}`);
+    });
+  }
+}
 function main() {
   let exit = false;
   while (!exit) {
@@ -30,9 +40,7 @@ function main() {
         console.log("vuoi rimuovere una task...da fare ancora la funzione");
         break;
       case 3:
-        console.log(
-          "vuoi vedere la lista delle task...da fare ancora la funzione"
-        );
+        viewTasks();
         break;
       case 4:
         exit = true;
