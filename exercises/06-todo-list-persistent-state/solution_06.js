@@ -69,6 +69,7 @@ function viewTasks() {
 //tooglestate task
 function toogleStateTask() {
   viewTasks();
+  if (viewTasks.length == 0) return "non ci sono ancora task";
   const taskIndex = parseInt(prompt("Quale task vuoi cambiare lo stato? "));
 
   if (taskIndex >= 0 && taskIndex <= tasks.length) {
@@ -87,7 +88,7 @@ function main() {
   let exit = false;
   while (!exit) {
     menu();
-    const choice = parseInt(prompt("Schegli una delle opzioni(1/2/3/4): "));
+    const choice = parseInt(prompt("Schegli una delle opzioni(1/2/3/4/5): "));
 
     switch (choice) {
       case 1:
