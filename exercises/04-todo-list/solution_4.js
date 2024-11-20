@@ -22,8 +22,13 @@ function removeTask() {
   const taskToRemove = parseInt(
     prompt("Iserisci il nr del task da cancellare: ")
   );
-  const removedTask = tasks.splice(taskToRemove, 1);
-  console.log(`La task ${removedTask} e stata eliminata con successo.`);
+  if (taskToRemove >= 0 && taskToRemove < tasks.length) {
+    const removedTask = tasks.splice(taskToRemove - 1, 1);
+    console.log(`La task ${removedTask} e stata eliminata con successo.`);
+  } else {
+    console.log("Inserire un nr di task valido:");
+    removeTask();
+  }
 }
 //func view tasks
 function viewTasks() {
