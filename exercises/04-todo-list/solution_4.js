@@ -11,26 +11,29 @@ function menu() {
 }
 
 function main() {
-  menu();
-  const choice = parseInt(prompt("Schegli una delle opsioni(1/2/3/4): "));
+  let exit = false;
+  while (!exit) {
+    menu();
+    const choice = parseInt(prompt("Schegli una delle opzioni(1/2/3/4): "));
 
-  switch (choice) {
-    case 1:
-      console.log("vuoi aggiungere una task...da fare ancora la funzione");
-      break;
-    case 2:
-      console.log("vuoi rimuovere una task...da fare ancora la funzione");
-      break;
-    case 3:
-      console.log(
-        "vuoi vedere la lista delle task...da fare ancora la funzione"
-      );
-      break;
-    case 4:
-      console.log("vuoi chiudere...da fare:mettere tutto in un cilco while ");
-      break;
-    default:
-      console.log("scelta invalida, inserire uno tra (1/2/3/4)");
+    switch (choice) {
+      case 1:
+        console.log("vuoi aggiungere una task...da fare ancora la funzione");
+        break;
+      case 2:
+        console.log("vuoi rimuovere una task...da fare ancora la funzione");
+        break;
+      case 3:
+        console.log(
+          "vuoi vedere la lista delle task...da fare ancora la funzione"
+        );
+        break;
+      case 4:
+        exit = true;
+        break;
+      default:
+        console.log("Scelta invalida, inserire uno tra (1/2/3/4)");
+    }
   }
 }
 main();
