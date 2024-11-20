@@ -11,10 +11,26 @@ function menu() {
   console.log("4. Exit");
 }
 
+//carico dati dal json
+function loadTasks() {
+  try {
+    const data = fs.readFileSync("todos.json");
+    tasks = JSON.parse(data);
+  } catch (ex) {
+    console.log("la lista dei task e vuota.");
+    tasks = [];
+  }
+}
+//salvo dati in json
+function saveTasks() {
+  fs.writeFileSync("todos.json", JSON.stringify(tasks));
+}
+
 //func add
 function addTask() {
   const task = prompt("Inserisci la task: ");
   tasks.push(task);
+  saveTasks();
 }
 //func remove task
 function removeTask() {
@@ -23,12 +39,13 @@ function removeTask() {
   const taskToRemove = parseInt(
     prompt("Iserisci il nr del task da cancellare: ")
   );
-  if (taskToRemove >= 0 && taskToRemove < tasks.length) {
+  if (taskToRemove >= 0 && taskToRemove <= tasks.length) {
     const removedTask = tasks.splice(taskToRemove - 1, 1);
     console.log(`La task ${removedTask} e stata eliminata con successo.`);
   } else {
     console.log("Inserire un nr di task valido:");
     removeTask();
+    saveTasks();
   }
 }
 //func view tasks
@@ -42,7 +59,9 @@ function viewTasks() {
     });
   }
 }
+
 function main() {
+  loadTasks();
   let exit = false;
   while (!exit) {
     menu();
