@@ -15,6 +15,16 @@ function addTask() {
   const task = prompt("Inserisci la task: ");
   tasks.push(task);
 }
+//func remove task
+function removeTask() {
+  viewTasks();
+
+  const taskToRemove = parseInt(
+    prompt("Iserisci il nr del task da cancellare: ")
+  );
+  const removedTask = tasks.splice(taskToRemove, 1);
+  console.log(`La task ${removedTask} e stata eliminata con successo.`);
+}
 //func view tasks
 function viewTasks() {
   if (tasks.length == 0) {
@@ -37,7 +47,7 @@ function main() {
         addTask();
         break;
       case 2:
-        console.log("vuoi rimuovere una task...da fare ancora la funzione");
+        removeTask();
         break;
       case 3:
         viewTasks();
