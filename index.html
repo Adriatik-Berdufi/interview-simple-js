@@ -11,10 +11,28 @@
 
 <body>
   <div id="app">
-    <div class="container">
+    <div class="container m-5">
       <h1 class="text-center">TODO List</h1>
+
+      <!-- form per inserire nuovo task -->
+      <div class="mb-3">
+        <label for="new-task" class="form-label">Nuovo Task:</label>
+        <input id="new-task" v-model="newTaskTitle" class="form-control" placeholder="Inserisci un titolo per il task"
+          type="text" />
+        <div class="form-check mt-2">
+          <input id="new-task-state" v-model="newTaskState" class="form-check-input" type="checkbox" />
+          <label for="new-task-state" class="form-check-label">
+            Completato
+          </label>
+        </div>
+        <button @click="addTask" class="btn btn-primary mt-3">
+          Aggiungi Task
+        </button>
+      </div>
+
+      <!-- lista task -->
       <ul>
-        <li v-for="(task, index) in todos" :key="index">
+        <li v-for="(task, index) in todos" :key="index" :class=" task.state ?  'text-success':'text-danger' ">
           {{ task.title }}
         </li>
       </ul>

@@ -30,7 +30,7 @@ function saveTasks() {
 //func add
 function addTask() {
   const task = prompt("Inserisci la task: ");
-  tasks.push({ title: task, state: "undone" });
+  tasks.push({ title: task, state: false });
   saveTasks();
 }
 
@@ -43,7 +43,7 @@ function removeTask() {
   );
   if (taskToRemove > 0 && taskToRemove <= tasks.length) {
     const selectedTask = tasks[taskToRemove - 1];
-    if (selectedTask.state == "done") {
+    if (selectedTask.state) {
       const removedTask = tasks.splice(taskToRemove - 1, 1);
       console.log(
         `La task ${removedTask[0].title} e stata eliminata con successo.`
@@ -65,7 +65,11 @@ function viewTasks() {
   } else {
     console.log("Task List");
     tasks.forEach((task, index) => {
-      console.log(`${index + 1}: ${task.title} => stato: ${task.state}`);
+      console.log(
+        `${index + 1}: ${task.title} => stato: ${
+          task.state ? "done" : "undone"
+        }`
+      );
     });
   }
 }
@@ -80,7 +84,7 @@ function toogleStateTask() {
 
   if (taskIndex > 0 && taskIndex <= tasks.length) {
     const task = tasks[taskIndex - 1];
-    task.state = task.state == "undone" ? "done" : "undone";
+    task.state = !task.state;
     saveTasks();
     viewTasks();
   } else {
