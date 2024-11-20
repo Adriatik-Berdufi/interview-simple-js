@@ -41,10 +41,13 @@ function removeTask() {
   const taskToRemove = parseInt(
     prompt("Iserisci il nr del task da cancellare: ")
   );
-  if (taskToRemove >= 0 && taskToRemove <= tasks.length) {
-    if (taskToRemove.state == "done") {
+  if (taskToRemove > 0 && taskToRemove <= tasks.length) {
+    const selectedTask = tasks[taskToRemove - 1];
+    if (selectedTask.state == "done") {
       const removedTask = tasks.splice(taskToRemove - 1, 1);
-      console.log(`La task ${removedTask} e stata eliminata con successo.`);
+      console.log(
+        `La task ${removedTask[0].title} e stata eliminata con successo.`
+      );
     } else {
       console.log("Non puoi cancellare una task non comlpetata.");
       removeTask();
@@ -69,10 +72,13 @@ function viewTasks() {
 //tooglestate task
 function toogleStateTask() {
   viewTasks();
-  if (viewTasks.length == 0) return "non ci sono ancora task";
+  if (tasks.length == 0) {
+    console.log("Non ci sono ancora task.");
+    return;
+  }
   const taskIndex = parseInt(prompt("Quale task vuoi cambiare lo stato? "));
 
-  if (taskIndex >= 0 && taskIndex <= tasks.length) {
+  if (taskIndex > 0 && taskIndex <= tasks.length) {
     const task = tasks[taskIndex - 1];
     task.state = task.state == "undone" ? "done" : "undone";
     saveTasks();
