@@ -9,6 +9,7 @@ function menu() {
   console.log("2. Remove Task");
   console.log("3. View Tasks");
   console.log("4. Exit");
+  console.log("5. Done or Undone Task");
 }
 
 //carico dati dal json
@@ -65,6 +66,21 @@ function viewTasks() {
     });
   }
 }
+//tooglestate task
+function toogleStateTask() {
+  viewTasks();
+  const taskIndex = parseInt(prompt("Quale task vuoi cambiare lo stato? "));
+
+  if (taskIndex >= 0 && taskIndex <= tasks.length) {
+    const task = tasks[taskIndex - 1];
+    task.state = task.state == "undone" ? "done" : "undone";
+    saveTasks();
+    viewTasks();
+  } else {
+    console.log("inserire un nr di task valido.");
+    toogleStateTask();
+  }
+}
 
 function main() {
   loadTasks();
@@ -85,6 +101,9 @@ function main() {
         break;
       case 4:
         exit = true;
+        break;
+      case 5:
+        toogleStateTask();
         break;
       default:
         console.log("Scelta invalida, inserire uno tra (1/2/3/4)");
