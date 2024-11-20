@@ -1,6 +1,6 @@
 const prompt = require("prompt-sync")();
 
-let task = [];
+let tasks = [];
 
 function menu() {
   console.log("List Menu");
@@ -8,6 +8,12 @@ function menu() {
   console.log("2. Remove Task");
   console.log("3. View Tasks");
   console.log("4. Exit");
+}
+
+//func add
+function addTask() {
+  const task = prompt("Inserisci la task: ");
+  tasks.push(task);
 }
 
 function main() {
@@ -18,7 +24,7 @@ function main() {
 
     switch (choice) {
       case 1:
-        console.log("vuoi aggiungere una task...da fare ancora la funzione");
+        addTask();
         break;
       case 2:
         console.log("vuoi rimuovere una task...da fare ancora la funzione");
