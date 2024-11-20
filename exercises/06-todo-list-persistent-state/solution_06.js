@@ -29,9 +29,10 @@ function saveTasks() {
 //func add
 function addTask() {
   const task = prompt("Inserisci la task: ");
-  tasks.push(task);
+  tasks.push({ title: task, state: "undone" });
   saveTasks();
 }
+
 //func remove task
 function removeTask() {
   viewTasks();
@@ -40,8 +41,13 @@ function removeTask() {
     prompt("Iserisci il nr del task da cancellare: ")
   );
   if (taskToRemove >= 0 && taskToRemove <= tasks.length) {
-    const removedTask = tasks.splice(taskToRemove - 1, 1);
-    console.log(`La task ${removedTask} e stata eliminata con successo.`);
+    if (taskToRemove.state == "done") {
+      const removedTask = tasks.splice(taskToRemove - 1, 1);
+      console.log(`La task ${removedTask} e stata eliminata con successo.`);
+    } else {
+      console.log("Non puoi cancellare una task non comlpetata.");
+      removeTask();
+    }
   } else {
     console.log("Inserire un nr di task valido:");
     removeTask();
@@ -55,7 +61,7 @@ function viewTasks() {
   } else {
     console.log("Task List");
     tasks.forEach((task, index) => {
-      console.log(`${index + 1}: ${task}`);
+      console.log(`${index + 1}: ${task.title} => stato: ${task.state}`);
     });
   }
 }
